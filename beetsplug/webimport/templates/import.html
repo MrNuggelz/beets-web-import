@@ -1,0 +1,124 @@
+<!doctype html>
+<head>
+    <title>Beets Import</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='beets.css') }}" type="text/css">
+    <script src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='util.js') }}"></script>
+    <script>
+        function applyTask(task_index) {
+            console.log('accepting task :' + task_index);
+            //TODO: show error
+            $.ajax({
+                url: '/api/apply',
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    "task_index": task_index,
+                    "candidate_index": 0
+                }),
+                success: function (data) {
+                    window.location.href = "/"
+                },
+                error: function (data) {
+                    alert(data)
+                }
+            });
+        }
+
+
+        function skip(task_index) {
+            $.ajax({
+                url: '/api/skip',
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({"task_index": task_index}),
+                success: function (data) {
+                    window.location.replace("/")
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText)
+                }
+            });
+        }
+
+        function asIs(task_index) {
+            $.ajax({
+                url: '/api/asIs',
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({"task_index": task_index}),
+                success: function (data) {
+                    window.location.replace("/")
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText)
+                }
+            });
+        }
+
+        function asTracks(task_index) {
+            $.ajax({
+                url: '/api/asTracks',
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({"task_index": task_index}),
+                success: function (data) {
+                    window.location.replace("/")
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText)
+                }
+            });
+        }
+
+        function searchId(task_index, id) {
+            $.ajax({
+                url: '/api/searchId',
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({"task_index": task_index, 'id': id}),
+                success: function (data) {
+                    window.location.replace("/")
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText)
+                }
+            });
+        }
+
+        function searchName(task_index, artist, name) {
+            $.ajax({
+                url: '/api/searchName',
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    "task_index": task_index,
+                    'artist': artist,
+                    'name': name
+                }),
+                success: function (data) {
+                    window.location.replace("/")
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText)
+                }
+            });
+        }
+    </script>
+</head>
+<section class="content">
+    <div id="header">
+        <h1>beets</h1>
+    </div>
+
+    <div id="tasks" style="margin-top: 36px;float: left">
+        <span>Tasks:</span><br>
+    </div>
+
+    <form action="/" method="POST" style="margin-top: 36px;float: right;">
+        <span>Import Music:</span><input name="path" placeholder="path">
+        <input type="submit" value="start">
+    </form>
+</section>
