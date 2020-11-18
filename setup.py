@@ -19,7 +19,7 @@ from setuptools import setup
 
 setup(
     name='beets-web-import',
-    version='0.0.1',
+    version='0.0.2',
     description='web import interface for beets',
     author='Joris Jensen',
     author_email='mrnuggelz@gmx.de',
