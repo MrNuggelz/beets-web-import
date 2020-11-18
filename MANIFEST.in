@@ -1,0 +1,2 @@
+recursive-include beetsplug/webimport/templates *
+recursive-include beetsplug/webimport/static *

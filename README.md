@@ -15,3 +15,5 @@ To use this plugins, just use the plugins option in your config.yaml file, like 
 plugins: webimport
 ```
 
+## Example screenshot
+![Screenshot](screenshot.png)
